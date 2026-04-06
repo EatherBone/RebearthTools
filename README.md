@@ -1,4 +1,4 @@
-# Project Rebearth Mod Manager v1.0
+# Project Rebearth Mod Manager v1.1
 
 ![Version](https://img.shields.io/badge/version-1.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)
@@ -17,6 +17,7 @@ A simple tool for modifying and enhancing the visuals of **Project Rebearth**. T
 *   **Self-Extracting Assets**: Upon first launch, the EXE automatically extracts required resources (`icon.ico`, `project_rebearth.exe`) to the local directory.
 
 ### In-Game Panel
+* **Production Calculator** - Calculate your building, production and population costs right in game! And visualize it, yea.
 *   **FPS Counter**: A real-time frames-per-second display.
 *   **Zen Mode**: Eliminates UI clutter, leaving only the essential stats bar visible.
 *   **Ghost HUD**: Makes the interface transparent.
@@ -24,7 +25,7 @@ A simple tool for modifying and enhancing the visuals of **Project Rebearth**. T
 *   **Advanced Visual Filters**:
     *   *Vivid View*: High-contrast, saturated, vibrant colors.
     *   *Golden Hour*: Warm, sunset-style lighting.
-    *   *Deep Night*: An immersive, atmospheric deep-blue night mode. And yea - it looks weird ik :D
+    *   *Deep Night*: An immersive, atmospheric deep-blue night mode. And yea - it looks weird ik :D (Deprecated. v.1.0 only)
 
 ---
 
@@ -33,12 +34,12 @@ A simple tool for modifying and enhancing the visuals of **Project Rebearth**. T
 | Key | Action |
 |:---:|---|
 | **H** | **Hide UI**: Toggle the entire interface on/off |
+| **C** | **Calculator**: Open production calc modal |
 | **F** | **Zen Focus**: Hide everything except the resource bar |
 | **T** | **Ghost HUD**: 85% transparency + click-through mode |
-| **C** | **Cinema Bars**: Toggle cinematic letterboxing |
+| **L** | **Cinema Bars**: Toggle cinematic letterboxing |
 | **V** | **Vivid View**: Toggle enhanced color saturation |
 | **G** | **Golden Hour**: Toggle warm sunset lighting |
-| **N** | **Deep Night**: Toggle this weird filter |
 | **M** | **Minimize**: Collapse/Expand the Mod Panel |
 
 ---
@@ -66,7 +67,7 @@ To make a build use **PyInstaller**.
 2. **Prepare Files**: Ensure your project folder contains an `assets` directory with  `electron.exe` renamed into `project_rebearth.exe`.
 3. **Run Build Command**:
    ```bash
-   pyinstaller --noconsole --onefile --add-data "assets;assets" --icon="assets/icon.ico" --name "RebearthTools_v1.0" main.py
+   pyinstaller --noconsole --onefile --add-data "assets;assets" --icon="assets/icon.ico" --name "RebearthTools_v1.1" main.py
    ```
 
 ---
