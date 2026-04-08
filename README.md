@@ -1,6 +1,6 @@
-# Project Rebearth Mod Manager v1.1
+# Project Rebearth Mod Manager v1.2
 
-![Version](https://img.shields.io/badge/version-1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.2-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)
 
 A simple tool for modifying and enhancing the visuals of **Project Rebearth**. This manager works by injecting custom JavaScript code directly into the game's Electron-based engine.
@@ -25,7 +25,7 @@ A simple tool for modifying and enhancing the visuals of **Project Rebearth**. T
 *   **Advanced Visual Filters**:
     *   *Vivid View*: High-contrast, saturated, vibrant colors.
     *   *Golden Hour*: Warm, sunset-style lighting.
-    *   *Deep Night*: An immersive, atmospheric deep-blue night mode. And yea - it looks weird ik :D (Deprecated. v.1.0 only)
+    *   *Deep Night*: An immersive, atmospheric deep-blue night mode. And yea - it looks weird ik :D
 
 ---
 
@@ -40,6 +40,8 @@ A simple tool for modifying and enhancing the visuals of **Project Rebearth**. T
 | **L** | **Cinema Bars**: Toggle cinematic letterboxing |
 | **V** | **Vivid View**: Toggle enhanced color saturation |
 | **G** | **Golden Hour**: Toggle warm sunset lighting |
+| **N** | **Deep Night**: Toggle weird filter |
+
 | **M** | **Minimize**: Collapse/Expand the Mod Panel |
 
 ---
@@ -67,7 +69,7 @@ To make a build use **PyInstaller**.
 2. **Prepare Files**: Ensure your project folder contains an `assets` directory with  `electron.exe` renamed into `project_rebearth.exe`.
 3. **Run Build Command**:
    ```bash
-   pyinstaller --noconsole --onefile --add-data "assets;assets" --icon="assets/icon.ico" --name "RebearthTools_v1.1" main.py
+   pyinstaller --noconsole --onefile --add-data "assets;assets" --icon="assets/icon.ico" --name "RebearthTools_v1.2" main.py
    ```
 
 ---
