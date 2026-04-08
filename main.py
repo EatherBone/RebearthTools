@@ -8,7 +8,7 @@ import customtkinter as ctk
 from tkinter import filedialog, messagebox
 
 # --------------------------------------------------
-#       Project Rebearth Mod Manager v1.1
+#       Project Rebearth Mod Manager v1.2
 #          by EatherBone for community <3
 # --------------------------------------------------
 
@@ -52,7 +52,7 @@ class AsarTool:
 class ModManagerApp(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Project Rebearth Mod Manager v1.1")
+        self.title("Project Rebearth Mod Manager v1.2")
         self.geometry("620x560")
         
         # copy assets
@@ -84,7 +84,7 @@ class ModManagerApp(ctk.CTk):
                     print(f"Extraction error: {e}")
 
     def setup_ui(self):
-        ctk.CTkLabel(self, text="REBEARTH TOOLS v1.1", font=("Arial", 22, "bold")).pack(pady=15)
+        ctk.CTkLabel(self, text="REBEARTH TOOLS v1.2", font=("Arial", 22, "bold")).pack(pady=15)
         
         # status
         self.status_frame = ctk.CTkFrame(self)
@@ -215,33 +215,35 @@ class ModManagerApp(ctk.CTk):
 
 MOD_LOADER_JS = """
 (function() {
-console.log("=RT= Rebearth Tools v1.1");
+console.log("=RT= Rebearth Tools v1.2");
 
 // main config
+
 const RECIPES = {
-    'Wood': { produced_by: 'Woodcutter', output: {'Wood': 30, 'Stone': 15, 'Earth': 5}, inputs: {}, population: 4, construction: {'Wood': {'Wood': 50}, 'Stone': {'Wood': 50}, 'Earth': {'Wood': 50}, 'Arctic': {'Wood': 50}}, note: 'Not in Arctic' },
-    'Stone': { produced_by: 'Quarry + Crane', output: {'Wood': 0.01, 'Stone': 0.03, 'Earth': 0.01}, inputs: {}, population: 0.01, construction: {'Wood': 0.01, 'Stone': 0.01, 'Earth': 0.01, 'Arctic': 0.01}, constructionType: 'per_m2_wood', note: 'per m²' },
-    'Earth': { produced_by: 'Clay Pit + Crane', output: {'Wood': 0.01, 'Stone': 0.01, 'Earth': 0.03}, inputs: {}, population: 0.01, construction: {'Wood': 0.01, 'Stone': 0.01, 'Earth': 0.01, 'Arctic': 0.01}, constructionType: 'per_m2_wood', note: 'per m²' },
-    'Ore': { produced_by: 'Iron Mine', output: {'Wood': 40, 'Stone': 100, 'Earth': 60}, inputs: {}, population: 50, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}}, note: 'Not in Arctic' },
-    'Grain': { produced_by: 'Field', output: 100, inputs: {}, population: 10, construction: {'Wood': { 'Wood': 2}, 'Stone': {'Stone': 2}, 'Earth': {'Earth': 2}, 'Arctic': {'Wood': 2}} },
-    'Wool': { produced_by: 'Sheep Field', output: 50, inputs: {}, population: 0, construction: {'Wood': {'Wood': 2}, 'Stone': {'Stone': 2}, 'Earth': {'Earth': 2}, 'Arctic': {'Wood': 2}}, note: 'per 10000m²' },
-    'Milk': { produced_by: 'Cow/Goat Field', output: 50, inputs: {}, population: 0, construction: {'Wood': {'Wood': 2}, 'Stone': {'Stone': 2}, 'Earth': {'Earth': 2}, 'Arctic': {'Wood': 2}}, note: 'per 10000m²' },
-    'Flour': { produced_by: 'Windmill', output: 100, inputs: { 'Grain': 100 }, population: 5, construction: {'Wood': {'Wood': 30, 'Stone': 20, 'Tools': 1}, 'Stone': {'Wood': 30, 'Stone': 20, 'Tools': 1}, 'Earth': {'Wood': 30, 'Stone': 20, 'Tools': 1}, 'Arctic': {'Wood': 30, 'Stone': 20, 'Tools': 1}} },
-    'Metal': { produced_by: 'Refinery', output: 10, inputs: { 'Ore': 50 }, population: 20, tools_cost: 0.2, construction: {'Wood': {'Wood': 100, 'Stone': 200, 'Tools': 10}, 'Stone': {'Wood': 50, 'Stone': 300, 'Tools': 10}, 'Earth': {'Stone': 100, 'Earth': 200, 'Tools': 10}, 'Arctic': {'Wood': 100, 'Stone': 200, 'Tools': 10}} },
-    'Glass': { produced_by: 'Glassworks', output: 5, inputs: { 'Earth': 50 }, population: 10, tools_cost: 0.5, construction: {'Wood': {'Wood': 100, 'Metal': 10, 'Tools': 10}, 'Stone': {'Stone': 100, 'Metal': 10, 'Tools': 10}, 'Earth': {'Earth': 100, 'Metal': 10, 'Tools': 10}}, note: 'Not in Arctic' },
-    'Tools': { produced_by: 'Tools Workshop', output: 2, inputs: { 'Metal': 4, 'Wood': 5 }, population: 10, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}} },
-    'Clothes': { produced_by: 'Tailor', output: 50, inputs: { 'Wool': 50 }, population: 10, tools_cost: 0.1, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}} },
-    'Drinks': { produced_by: 'Brewery', output: 50, inputs: { 'Grain': 50 }, population: 10, tools_cost: 0.1, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}} },
-    'Food': { produced_by: 'Bakery', output: 100, inputs: { 'Flour': 50 }, population: 4, construction: {'Wood': {'Wood': 100, 'Stone': 50, 'Tools': 5}, 'Stone': {'Wood': 100, 'Stone': 50, 'Tools': 5}, 'Earth': {'Wood': 50, 'Stone': 100, 'Tools': 5}, 'Arctic': {'Wood': 100, 'Stone': 50, 'Tools': 5}} },
-    'Coin': { produced_by: 'Tavern', output: 10, inputs: { 'Drinks': 10 }, population: 5, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}} },
-    'Cream': { produced_by: 'Creamery', output: 50, inputs: { 'Milk': 50 }, population: 5, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}} }
+    'Wood': { produced_by: 'Woodcutter', output: {'Wood': 30, 'Stone': 15, 'Earth': 5, 'Arctic': 0}, inputs: {}, inputs_biome: {'Wood': {'Tools': 0.05}}, population: 4, construction: {'Wood': {'Wood': 50}, 'Stone': {'Wood': 50}, 'Earth': {'Wood': 50}, 'Arctic': {'Wood': 50}}, note: 'Not in Arctic' },
+    'Stone': { produced_by: 'Quarry + Stone Crane', output: {'Wood': 20, 'Stone': 30, 'Earth': 10, 'Arctic': 0}, inputs: {}, population: 2, construction: {'Wood': {'Wood': 60}, 'Stone': {'Stone': 60}, 'Earth': {'Earth': 60}, 'Arctic': {'Wood': 60}}, note: 'Stone Crane /day' },
+    'Earth': { produced_by: 'Claypit + Clay Crane', output: {'Wood': 20, 'Stone': 10, 'Earth': 30, 'Arctic': 0}, inputs: {}, population: 2, construction: {'Wood': {'Wood': 60}, 'Stone': {'Stone': 60}, 'Earth': {'Earth': 60}, 'Arctic': {'Wood': 60}}, note: 'Clay Crane /day' },
+    'Ore': { produced_by: 'Iron Mine', output: {'Wood': 40, 'Stone': 100, 'Earth': 60, 'Arctic': 0}, inputs: {}, population: 50, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}}, note: 'Not in Arctic' },
+    // processing buildings
+    'Grain': { produced_by: 'Field', output: {'Wood': 100, 'Stone': 100, 'Earth': 100, 'Arctic': 100}, inputs: {}, population: 10, construction: {'Wood': {'Wood': 2}, 'Stone': {'Stone': 2}, 'Earth': {'Earth': 2}, 'Arctic': {'Wood': 2}} },
+    'Wool':  { produced_by: 'Sheep Field', output: {'Wood': 50, 'Stone': 50, 'Earth': 50, 'Arctic': 50}, inputs: {}, population: 0, construction: {'Wood': {'Wood': 2}, 'Stone': {'Stone': 2}, 'Earth': {'Earth': 2}, 'Arctic': {'Wood': 2}}, note: 'per 10000m²' },
+    'Milk':  { produced_by: 'Cow/Goat Field', output: {'Wood': 50, 'Stone': 50, 'Earth': 50, 'Arctic': 50}, inputs: {}, population: 0, construction: {'Wood': {'Wood': 2}, 'Stone': {'Stone': 2}, 'Earth': {'Earth': 2}, 'Arctic': {'Wood': 2}}, note: 'per 10000m²' },
+    'Flour': { produced_by: 'Windmill', output: {'Wood': 100, 'Stone': 100, 'Earth': 100, 'Arctic': 100}, inputs: { 'Grain': 100 }, population: 5, construction: {'Wood': {'Wood': 30, 'Stone': 20, 'Tools': 1}, 'Stone': {'Wood': 30, 'Stone': 20, 'Tools': 1}, 'Earth': {'Wood': 30, 'Stone': 20, 'Tools': 1}, 'Arctic': {'Wood': 30, 'Stone': 20, 'Tools': 1}} },
+    'Metal': { produced_by: 'Refinery', output: {'Wood': 10, 'Stone': 10, 'Earth': 10, 'Arctic': 10}, inputs: { 'Ore': 50 }, population: 20, construction: {'Wood': {'Wood': 100, 'Stone': 200, 'Tools': 10}, 'Stone': {'Wood': 50, 'Stone': 300, 'Tools': 10}, 'Earth': {'Stone': 100, 'Earth': 200, 'Tools': 10}, 'Arctic': {'Wood': 100, 'Stone': 200, 'Tools': 10}} },
+    'Glass': { produced_by: 'Glassworks', output: {'Wood': 5, 'Stone': 5, 'Earth': 5, 'Arctic': 0}, inputs: { 'Earth': 50 }, population: 10, construction: {'Wood': {'Wood': 100, 'Metal': 10, 'Tools': 10}, 'Stone': {'Stone': 100, 'Metal': 10, 'Tools': 10}, 'Earth': {'Earth': 100, 'Metal': 10, 'Tools': 10}}, note: 'Not in Arctic' },
+    'Tools': { produced_by: 'Tools Workshop', output: {'Wood': 2, 'Stone': 2, 'Earth': 2, 'Arctic': 2}, inputs: { 'Metal': 4, 'Wood': 5 }, population: 10, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}} },
+    'Clothes': { produced_by: 'Tailor', output: {'Wood': 50, 'Stone': 50, 'Earth': 50, 'Arctic': 50}, inputs: { 'Wool': 50 }, population: 10, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}} },
+    'Drinks': { produced_by: 'Brewery', output: {'Wood': 50, 'Stone': 50, 'Earth': 50, 'Arctic': 50}, inputs: { 'Grain': 50 }, population: 10, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}} },
+    'Food':   { produced_by: 'Bakery', output: {'Wood': 100, 'Stone': 100, 'Earth': 100, 'Arctic': 100}, inputs: { 'Flour': 50 }, population: 4, construction: {'Wood': {'Wood': 100, 'Stone': 50, 'Tools': 5}, 'Stone': {'Wood': 100, 'Stone': 50, 'Tools': 5}, 'Earth': {'Wood': 50, 'Stone': 100, 'Tools': 5}, 'Arctic': {'Wood': 100, 'Stone': 50, 'Tools': 5}} },
+    'Coin':   { produced_by: 'Tavern', output: {'Wood': 10, 'Stone': 10, 'Earth': 10, 'Arctic': 10}, inputs: { 'Drinks': 10 }, population: 5, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}} },
+    'Cream':  { produced_by: 'Creamery', output: {'Wood': 50, 'Stone': 50, 'Earth': 50, 'Arctic': 50}, inputs: { 'Milk': 50 }, population: 5, construction: {'Wood': {'Wood': 50}, 'Stone': {'Stone': 50}, 'Earth': {'Earth': 50}, 'Arctic': {'Wood': 50}} }
 };
 const ALL_RESOURCES = Object.keys(RECIPES);
 const BIOMES = {
-    'Wood': { name: 'Wood Biome', primaryResource: 'Wood', housingUpkeep: 1.0, constructionCost: 1.0, productionRates: {'Wood': 30, 'Stone': 0.01, 'Earth': 0.01, 'Ore': 40, 'Food': 5}, description: 'Forest - balanced production', color: '#2d5016' },
-    'Stone': { name: 'Stone Biome', primaryResource: 'Stone', housingUpkeep: 1.0, constructionCost: 1.0, productionRates: {'Wood': 15, 'Stone': 0.03, 'Earth': 0.01, 'Ore': 100, 'Food': 5}, description: 'Mountains - Best Ore & Stone', color: '#5a5a5a' },
-    'Earth': { name: 'Earth Biome', primaryResource: 'Earth', housingUpkeep: 0.1, constructionCost: 1.0, productionRates: {'Wood': 5, 'Stone': 0.01, 'Earth': 0.03, 'Ore': 60, 'Food': 3}, description: 'Arid - Low Wood upkeep', color: '#8b7355' },
-    'Arctic': { name: 'Arctic Biome', primaryResource: 'None', housingUpkeep: 2.0, constructionCost: 2.0, productionRates: {'Wood': 0, 'Stone': 0, 'Earth': 0, 'Ore': 0, 'Food': 10}, description: 'Frozen - NO extraction!', color: '#a8d8ea' }
+    'Wood':   { name: 'Wood Biome',   primaryResource: 'Wood',  housingUpkeep: 1.0, constructionCost: 1.0, description: 'Forest — best Wood, Tools cost on Woodcutter', color: '#2d5016' },
+    'Stone':  { name: 'Stone Biome',  primaryResource: 'Stone', housingUpkeep: 1.0, constructionCost: 1.0, description: 'Mountains — best Ore (100/day) & Stone', color: '#5a5a5a' },
+    'Earth':  { name: 'Earth Biome',  primaryResource: 'Earth', housingUpkeep: 0.1, constructionCost: 1.0, description: 'Arid — best Earth, ×0.1 Wood upkeep', color: '#8b7355' }
+    // 'Arctic': { name: 'Arctic Biome', primaryResource: 'None',  housingUpkeep: 2.0, constructionCost: 2.0, description: 'Frozen — no extraction, ×2 Wood upkeep', color: '#a8d8ea' }
 };
 const ALL_BIOMES = Object.keys(BIOMES);
 
@@ -339,7 +341,7 @@ document.body.appendChild(topBar); document.body.appendChild(botBar);
 const panel = document.createElement('div');
 panel.id = 'rebearth-mod-panel';
 panel.innerHTML = `
-    <div class="mod-header"><span>RebearthTools v1.1</span><div id="fps-display">FPS: --</div></div>
+    <div class="mod-header"><span>RebearthTools v1.2</span><div id="fps-display">FPS: --</div></div>
     <div class="mod-section">Visibility</div>
     <button class="mod-btn" id="btn-hide-ui">Full Hide (H)</button>
     <button class="mod-btn" id="btn-zen-ui">Zen Focus (F)</button>
@@ -348,6 +350,7 @@ panel.innerHTML = `
     <button class="mod-btn" id="btn-cinema">Cinema Bars (L)</button>
     <button class="mod-btn" id="btn-enhance">Vivid View (V)</button>
     <button class="mod-btn" id="btn-golden">Golden Hour (G)</button>
+    <button class="mod-btn" id="btn-night">Deep Night (N)</button>
     <div class="mod-section">Tools</div>
     <button class="mod-btn" id="btn-calc" style="background:#ebb933; color:#562c1b;">Smart Calculator (C)</button>
     <div style="font-size: 8px; opacity: 1; margin-top: 5px; text-align: center;">M - Collapse Menu</div>
@@ -390,6 +393,7 @@ document.body.appendChild(calcPanel);
 // init selects
 const calcResourceSelect = document.getElementById('calc-resource');
 ALL_RESOURCES.forEach(res => { const opt = document.createElement('option'); opt.value = res; opt.textContent = res; calcResourceSelect.appendChild(opt); });
+calcResourceSelect.addEventListener('change', () => { if(calcPanel.classList.contains('visible')) runCalculator(); });
 const calcBiomeSelect = document.getElementById('calc-biome');
 ALL_BIOMES.forEach(biome => { const opt = document.createElement('option'); opt.value = biome; opt.textContent = BIOMES[biome].name; calcBiomeSelect.appendChild(opt); });
 calcBiomeSelect.addEventListener('change', () => {
@@ -399,6 +403,7 @@ calcBiomeSelect.addEventListener('change', () => {
     descEl.textContent = info.description;
     descEl.style.background = info.color + '40';
     descEl.style.border = '1px solid ' + info.color;
+    if(calcPanel.classList.contains('visible')) runCalculator();
 });
 calcBiomeSelect.dispatchEvent(new Event('change'));
 
@@ -439,11 +444,12 @@ const applyFilter = (cls, btnId) => {
     const btn = document.getElementById(btnId);
     const active = g.classList.contains(cls);
     g.classList.remove('enhanced-visuals', 'golden-hour', 'deep-night');
-    ['btn-enhance', 'btn-golden'].forEach(id => document.getElementById(id)?.classList.remove('active'));
+    ['btn-enhance', 'btn-golden', 'btn-night'].forEach(id => document.getElementById(id)?.classList.remove('active'));
     if(!active) { g.classList.add(cls); btn?.classList.add('active'); }
 };
 document.getElementById('btn-enhance').onclick = () => applyFilter('enhanced-visuals', 'btn-enhance');
 document.getElementById('btn-golden').onclick = () => applyFilter('golden-hour', 'btn-golden');
+document.getElementById('btn-night').onclick = () => applyFilter('deep-night', 'btn-night');
 
 // chain logic
 const calcOutput = document.getElementById('calc-list');
@@ -587,19 +593,18 @@ function buildChainTree(item, neededAmount, biome, biomeData, requirements, buil
         inputs: []
     };
     
-    if(!recipe || !recipe.inputs || Object.keys(recipe.inputs).length === 0) {
+    // do not show too early...
+    if(!recipe) {
         return node;
     }
     
-    // Calculate output per building
-    let outputPerBuilding = 1;
-    if(typeof recipe.output === 'object') {
-        outputPerBuilding = recipe.output[biomeData.primaryResource] || recipe.output['Wood'] || 1;
-    } else {
-        outputPerBuilding = recipe.output || 1;
-    }
+    // biome aware out
+    let outputPerBuilding = (typeof recipe.output === 'object')
+        ? (recipe.output[biome] ?? recipe.output['Wood'] ?? 1)
+        : (recipe.output || 1);
+
     if(outputPerBuilding <= 0) outputPerBuilding = 1;
-    
+
     const buildingsNeeded = neededAmount / outputPerBuilding;
     const wholeBuildings = Math.ceil(buildingsNeeded);
     const buildingName = recipe.produced_by;
@@ -620,7 +625,20 @@ function buildChainTree(item, neededAmount, biome, biomeData, requirements, buil
         }
     }
     
-    // Process inputs recursively
+    // biome inputs
+    if(recipe.inputs_biome && recipe.inputs_biome[biome]) {
+        for(const [res, val] of Object.entries(recipe.inputs_biome[biome])) {
+            const extra = val * buildingsNeeded;
+            requirements[res] = (requirements[res] || 0) + extra;
+        }
+    }
+    
+    // exit
+    if(!recipe.inputs || Object.keys(recipe.inputs).length === 0) {
+        return node;
+    }
+    
+    // recursion
     for(const [inputRes, inputAmt] of Object.entries(recipe.inputs)) {
         const inputTotal = inputAmt * buildingsNeeded;
         const childNode = buildChainTree(inputRes, inputTotal, biome, biomeData, requirements, buildingStats, populationStats, constructionCosts, depth + 1);
@@ -661,13 +679,14 @@ document.addEventListener('keydown', (e) => {
     if(e.code === 'KeyT') document.getElementById('btn-ghost-ui')?.click();
     if(e.code === 'KeyV') document.getElementById('btn-enhance')?.click();
     if(e.code === 'KeyG') document.getElementById('btn-golden')?.click();
+    if(e.code === 'KeyN') document.getElementById('btn-night')?.click();
     if(e.code === 'KeyL') document.getElementById('btn-cinema')?.click();
     if(e.code === 'KeyM') togglePanel();
 });
 
 // API
 window.rebearthModTools = {
-    getVersion: () => "1.1",
+    getVersion: () => "1.2",
     getRecipes: () => RECIPES,
     getBiomes: () => BIOMES,
     calculate: (target, amount, biome) => {
@@ -677,7 +696,7 @@ window.rebearthModTools = {
         return { requirements: reqs, buildings: builds, population: pops, construction: constructs };
     }
 };
-console.log("=RT= Rebearth Tools v1.1 loaded");
+console.log("=RT= Rebearth Tools v1.2 loaded");
 })();
 """
 
