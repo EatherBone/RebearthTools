@@ -41,7 +41,6 @@ A simple tool for modifying and enhancing the visuals of **Project Rebearth**. T
 | **V** | **Vivid View**: Toggle enhanced color saturation |
 | **G** | **Golden Hour**: Toggle warm sunset lighting |
 | **N** | **Deep Night**: Toggle weird filter |
-
 | **M** | **Minimize**: Collapse/Expand the Mod Panel |
 
 ---
